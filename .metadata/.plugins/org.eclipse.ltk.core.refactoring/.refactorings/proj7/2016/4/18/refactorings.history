@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;tempList&apos; in &apos;graph.Graph.contractEdgeBetweenVertices(...)&apos; to &apos;vertex1List&apos;&#x0D;&#x0A;- Original project: &apos;proj7&apos;&#x0D;&#x0A;- Original element: &apos;graph.Graph.contractEdgeBetweenVertices(V, V).tempList&apos;&#x0D;&#x0A;- Renamed element: &apos;tempList&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;tempList&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/&lt;graph{Graph.java[Graph~contractEdgeBetweenVertices~QV;~QV;@tempList!7823!7880!7844!7851!QList\&lt;QadjacentVertex;&gt;;!0!false" name="vertex1List" references="true" stamp="1461715381074" version="1.0"/>
+</session>

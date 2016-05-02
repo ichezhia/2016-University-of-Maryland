@@ -1,0 +1,10 @@
+build.all.configs.enabled=false
+build.proj.ref.configs.enabled=false
+eclipse.preferences.version=1
+environment/workspace/PATH/delimiter=;
+environment/workspace/PATH/operation=append
+environment/workspace/PATH/value=C\:\\MinGW\\bin
+environment/workspace/append=true
+environment/workspace/appendContributed=true
+org.eclipse.cdt.core.showSourceRootsAtTopLevelOfProject=true
+org.eclipse.cdt.core.workspaceLanguageMappings=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><workspace-mappings/>

@@ -1,0 +1,18 @@
+1457298214359	Rename local variable 'currentThisNode'
+1457298224981	Rename local variable 'currentOtherNode'
+1457298793998	Rename local variable 'currentNode'
+1457299853542	Delete element
+1457299865754	Delete element
+1457302604219	Rename local variable 'abc'
+1457320387929	Rename local variable 'currentThisNode'
+1457323678677	Rename local variable 'currentOtherNode'
+1457323692397	Rename local variable 'currentNewNode'
+1457323734961	Rename local variable 'currentNewListNode'
+1457323742606	Rename local variable 'currentOtherListNode'
+1457323754757	Rename local variable 'currentNode'
+1457323771166	Rename local variable 'currentNode'
+1457323807978	Rename local variable 'print'
+1457323839134	Rename local variable 'indexSoFar'
+1457323877517	Rename local variable 'subReturnList'
+1457323898601	Rename local variable 'currentListNode'
+1457323907236	Rename local variable 'currentSubListNode'

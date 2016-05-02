@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;tree.Tree.toDisplayKeyValue()&apos; to &apos;toStringKeyValue&apos;&#x0D;&#x0A;- Original project: &apos;proj5&apos;&#x0D;&#x0A;- Original element: &apos;tree.Tree.toDisplayKeyValue()&apos;&#x0D;&#x0A;- Renamed element: &apos;tree.Tree.toStringKeyValue()&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;toDisplayKeyValue&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/&lt;tree{Tree.java[Tree~toDisplayKeyValue" name="toStringKeyValue" references="true" stamp="1459915822242" version="1.0"/>
+</session>

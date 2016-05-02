@@ -1,0 +1,277 @@
+/*
+ * Iniyan Chezhian
+ * ichezhi1
+ * 114167101
+ * CMSC 132-0301
+ * 
+ * I pledge on my honor that I have not given or received any unauthorized
+ * assistance on this assignment.
+ */
+
+package graph;
+
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class Graph<V> {
+
+   // graph is implementated using adjacency map
+   private Map<V, List<adjacentVertex>> adjacencyMap;
+   Comparator comparator;
+
+   // private inner class
+   private static class adjacentVertex<V> {
+      V vertex;
+      private int weight;
+
+      // constructor
+      public adjacentVertex(V vertex, int weight) {
+         this.vertex = vertex;
+         this.weight = weight;
+      }
+   }
+
+   // constructor initializes a new Graph
+   public Graph(Comparator<V> comparator) {
+      adjacencyMap = new HashMap<V, List<adjacentVertex>>();
+      this.comparator = comparator;
+   }
+
+   // copy constructor to make deep copy of otherGraph
+   // the current object and otherGraph will be independent
+   // (reference copies of V are used)
+   public Graph(Graph<V> otherGraph) {
+      adjacencyMap = new HashMap<V, List<adjacentVertex>>();
+
+      // for each entry in the map
+      for (Entry<V, List<adjacentVertex>> e : otherGraph.adjacencyMap.entrySet()) {
+         // add this vertex key to the adjacency map
+         this.addVertex(e.getKey());
+
+         // for each vertex class in the list
+         for (adjacentVertex adjVer : e.getValue()) {
+            // add an edge from this vertex key to other vertex with weight
+            addEdgeBetweenVertices(e.getKey(), (V) adjVer.vertex, adjVer.weight);
+         }
+      }
+   }
+
+   // add vertex to the graph and return true
+   // return false if it already exists
+   public boolean addVertex(V vertex) {
+
+      // check if graph already contains vertex
+      if (adjacencyMap.containsKey(vertex)) {
+         return false;
+      } else {
+         // add vertex to key of map
+         adjacencyMap.put(vertex, new ArrayList<adjacentVertex>());
+         return true;
+      }
+   }
+
+   // return true if graph contains the vertex parameter
+   public boolean isVertex(V vertex) {
+      // check to see if map(graph) contains key(vertex)
+      return adjacencyMap.containsKey(vertex);
+   }
+
+   // return a Collection containing all of the vertices
+   // in its current object graph
+   // return empty collection if graph with no vertices
+   public Collection<V> getVertices() {
+      return adjacencyMap.keySet();
+   }
+
+   // remove vertex from the graph and return true
+   // if vertex does not exist, return false
+   public boolean removeVertex(V vertex) {
+      // default return is false, assuming nothing is done
+      boolean retVal = false;
+
+      // remove vertex from the map's key
+      if (adjacencyMap.containsKey(vertex)) {
+         // remove the vertex(key) from the graph(map)
+         adjacencyMap.remove(vertex);
+         retVal = true;
+      }
+
+      // temporary List of adjacentVertex's to be removed from each start vertex
+      List<adjacentVertex> removeVert = new ArrayList<adjacentVertex>();
+
+      // for each entry in the map
+      for (Entry<V, List<adjacentVertex>> e : adjacencyMap.entrySet()) {
+         // for each vertex class in the list
+         for (adjacentVertex adjVer : e.getValue()) {
+            if (adjVer.vertex.equals(vertex)) {
+               // this adjacentVertex object is marked for removal
+               removeVert.add(adjVer);
+               retVal = true;
+            }
+
+         }
+         // remove the vertex objects in the list as needed
+         e.getValue().removeAll(removeVert);
+      }
+      return retVal;
+   }
+
+   // add a new edge to graph from V source to V dest with weight cost
+   public boolean addEdgeBetweenVertices(V source, V dest, int cost) {
+      // validate parameters
+      if (cost < 0) {
+         // negative cost should return false and not add edge
+         return false;
+      }
+
+      //add just in case
+      addVertex(source);
+      
+      //update if already exists
+      for (adjacentVertex adjVer : adjacencyMap.get(source)) {
+         if(adjVer.vertex.equals(source)) {
+            adjVer.weight = cost;
+            System.out.print("this is good");
+
+            return true;
+         }
+      }
+      
+      // add a new adjacency entry into the map
+      adjacencyMap.get(source).add(new adjacentVertex<V>(dest, cost));
+      return true;
+   }
+
+   // return the cost/weight of edge from source to dest in graph
+   public int getEdgeCost(V source, V dest) {
+      // validate parameters
+      if (!adjacencyMap.containsKey(source)) {
+         // return -1, case of source vertex does not exist
+         return -1;
+      }
+
+      // point to the source's adjacency data
+      List<adjacentVertex> tempList = adjacencyMap.get(source);
+
+      // iterate through all adjacency data for source vertex
+      for (adjacentVertex adjVer : tempList) {
+         if (adjVer.vertex.equals(dest)) {
+            // this vertex matches desired dest vertex, so return this weight
+            return adjVer.weight;
+         }
+      }
+
+      // source exists, but dest vertex does not exist, so return -1
+      return -1;
+   }
+
+   // remove the edge going from source to dest in graph
+   public boolean removeEdgeBetweenVertices(V source, V dest) {
+      // validate parameters
+      if (!adjacencyMap.containsKey(source)) {
+         // source vertex does not exist
+         return false;
+      }
+
+      // ListIterator for adjacency data for source vertex
+      ListIterator<adjacentVertex> iterator = adjacencyMap.get(source).listIterator();
+
+      while (iterator.hasNext()) {
+         if (iterator.next().vertex.equals(dest)) {
+            // dest vertex matches, so remove this edge entry, and return true
+            iterator.remove();
+            return true;
+         }
+      }
+
+      // dest vertex was not found
+      return false;
+   }
+
+   // return all of the neighbors for vertex
+   public Collection<V> getNeighbors(V vertex) {
+      // default empty Collection in case of no vertex or no neighbors
+      Collection<V> retVal = new ArrayList<V>();
+
+      // iterate through vertex's adjacency data
+      for (adjacentVertex adjVer : adjacencyMap.get(vertex)) {
+         // add this vertex to the return Collection
+         retVal.add((V) adjVer.vertex);
+      }
+
+      return retVal;
+   }
+
+   // return all predecessors for vertex
+   public Collection<V> getPredecessors(V vertex) {
+      // default empty Collection in case of no vertex or no neighbors
+      Collection<V> retVal = new ArrayList<V>();
+
+      // iterate through the whole map/graph
+      // for each entry/vertex in the map/graph
+      for (Entry<V, List<adjacentVertex>> e : adjacencyMap.entrySet()) {
+         // for each adjacent vertex data in list of adjacency data
+         for (adjacentVertex adjVer : e.getValue()) {
+            if (adjVer.vertex.equals(vertex)) {
+               // match to vertex, so add this vertex to return Collection
+               retVal.add(e.getKey());
+            }
+         }
+      }
+
+      return retVal;
+   }
+
+   // remove an edge by merging two vertices
+   public boolean contractEdgeBetweenVertices(V vertex1, V vertex2) {
+      // both vertex's are not in the graph
+      if (!adjacencyMap.containsKey(vertex1) && !adjacencyMap.containsKey(vertex2)) {
+         return false;
+      }
+
+      // no edge between both so return false
+
+      // remove edge
+      removeEdgeBetweenVertices(vertex1, vertex2);
+      removeEdgeBetweenVertices(vertex2, vertex1);
+
+      // assume vertex1 is less than vertex2, if not switch them
+      if (comparator.compare(vertex1, vertex2) < 0) {
+         V temp = vertex1;
+         vertex1 = vertex2;
+         vertex2 = temp;
+      }
+      // so now vertex1 is less than vertex2
+      // move vertex2 data to vertex1
+
+      List<adjacentVertex> vertex1List = adjacencyMap.get(vertex1);
+      vertex1List.addAll((Collection<? extends adjacentVertex>) getNeighbors(vertex2));
+
+      // remove duplicate edges if applicable
+      // add all same vertex data to a list, find max of list, remove that max
+      // from list, remove others from tempList
+      for (adjacentVertex adjVer1 : vertex1List) {
+         for (adjacentVertex adjVer2 : vertex1List) {
+            if (adjVer1.vertex.equals(adjVer2) && !adjVer1.equals(adjVer2)) {
+               //same vertex, but different weight
+               // remove the smaller cost vertex
+               if (adjVer1.weight > adjVer2.weight) {
+                  vertex1List.remove(adjVer2);
+               }
+            }
+         }
+      }
+
+      // remove vertex2
+      removeVertex(vertex2);
+
+      return true;
+   }
+
+}

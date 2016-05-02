@@ -1,0 +1,25 @@
+package tests;
+
+import org.junit.*;
+
+import graph.Graph;
+import tests.TestCode.StringComparator;
+
+import static org.junit.Assert.*;
+
+public class StudentTests {
+   
+   //tests constructor
+   @Test public void test1() {
+      Graph<Integer> graph1 = new Graph<>(TestCode.intComparator);
+      Graph<String> graph2 = new Graph<>(TestCode.strComparator);
+      Graph<Character> graph3 = new Graph<>(TestCode.charComparator);
+      
+      
+      Graph<Integer> graph4= new Graph<Integer>(graph1);
+   }
+
+   
+   
+      
+}

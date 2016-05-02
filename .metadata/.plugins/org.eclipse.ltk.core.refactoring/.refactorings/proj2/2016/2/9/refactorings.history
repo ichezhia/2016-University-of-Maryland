@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;chess.Chess.clearPath(...)&apos; to &apos;clearStraightPath&apos;&#x0D;&#x0A;- Original project: &apos;proj2&apos;&#x0D;&#x0A;- Original element: &apos;chess.Chess.clearPath(...)&apos;&#x0D;&#x0A;- Renamed element: &apos;chess.Chess.clearStraightPath(...)&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;clearPath&apos;" flags="589826" id="org.eclipse.jdt.ui.rename.method" input="/&lt;chess{Chess.java[Chess~clearPath~C~I~C~I" name="clearStraightPath" references="true" stamp="1456454635377" version="1.0"/>
+</session>

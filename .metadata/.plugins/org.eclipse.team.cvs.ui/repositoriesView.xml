@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repositories-view>
+	<repository id=":extssh:ichezhi1@grace.umd.edu:/afs/glue/class/spring2016/cmsc/132/0101/student/ichezhi1">
+		<module path="proj7" lastAcessTime="1461856057329">
+			<tag name="t1461729498273" type="version"/>
+			<tag name="t1461731369979" type="version"/>
+			<tag name="t1461730713002" type="version"/>
+		</module>
+		<module path="/" lastAcessTime="1461856057329">
+		</module>
+	</repository>
+</repositories-view>
